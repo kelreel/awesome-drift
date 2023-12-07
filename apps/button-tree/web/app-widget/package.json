@@ -1,6 +1,7 @@
 {
   "name": "@blinks/app-widget",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "main": "dist/widget.iife.js",
   "types": "dist/main.d.ts",

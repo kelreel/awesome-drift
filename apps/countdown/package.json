@@ -16,10 +16,5 @@
     "@shopify/cli": "^3.48.1"
   },
   "author": "gsc",
-  "private": true,
-  "workspaces": [
-    "web",
-    "web/frontend",
-    "extensions/*"
-  ]
+  "private": true
 }

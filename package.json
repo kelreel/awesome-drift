@@ -11,6 +11,7 @@
   "workspaces": [
     "./apps/*",
     "./apps/button-tree/web/*",
+    "./apps/button-tree/web/shared",
     "./packages/*"
   ],
   "devDependencies": {

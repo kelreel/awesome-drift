@@ -1,7 +1,7 @@
 {
   "name": "blinks-app-root",
   "version": "0.0.0",
-  "private": "true",
+  "private": true,
   "scripts": {
     "generate": "shopify app generate",
     "dev": "shopify app dev --theme-app-extension-port=9293 --skip-dependencies-installation",

@@ -53,3 +53,28 @@ npm run dev
 
 > [!TIP]
 > You may run npm scripts for target package(workspace) via `npm run {script_name} -w ${package_name}` (see npm workspaces docs)
+
+## Button tree app
+
+To start dev:
+
+0. Prepare PostgresQL database ans put auth string ro .env file
+1. Build `@blinks/shared` package
+
+```shell
+cd apps/button-tree/web/shared
+npm run build
+```
+
+2. Migrate dev database and build Prisma client types
+
+```shell
+npm run prisma:migrate:dev
+npm run prisma:generate
+```
+
+3. Start dev:mode
+
+```shell
+npm run dev
+```
