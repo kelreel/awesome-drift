@@ -1,0 +1,133 @@
+{
+    "timer": {
+        "timer_fixed": "Fixed date timer",
+        "section_timer_fixed": "Fixed date timer banner",
+        "timer_evergreen": "Evergreen timer",
+        "section_timer_evergreen": "Evergreen timer banner",
+        "mode": {
+            "label": "Timer mode",
+            "fixed": "Fixed date",
+            "evergreen": "Evergreen"
+        },
+        "end_date": "End date",
+        "end_time": "End time (optional)",
+        "year": "Year",
+        "month": "Month",
+        "day": "Day",
+        "days": "Days",
+        "hour": "Hour",
+        "hours": "Hours",
+        "minute": "Minute",
+        "minutes": "Minutes",
+        "seconds": "Seconds",
+        "hide_on_complete": "Hide timer when it ends",
+        "content": "Content",
+        "timer": "Timer",
+        "button": "Button",
+        "button_label": "Label",
+        "button_url": "Link",
+        "colors": "Colors",
+        "background": "Background",
+        "background_style": "Background style",
+        "background_separate": "For each time unit",
+        "background_common": "For all time units",
+        "background_none": "None",
+        "background_hide": "Hide",
+        "background_solid": "Solid",
+        "background_outline": "Outline",
+        "background_blurred": "Blurred",
+        "background_transparent": "Transparent",
+        "timer_style": {
+            "plain": "Plain",
+            "label": "Style",
+            "solid": "Solid",
+            "outline": "Outline",
+            "solid_with_colon": "Solid with colons",
+            "outline_with_colon": "Outline with colons",
+            "plain_with_colon": "Plain with colons"
+        },
+        "block_width": {
+            "label": "Block width",
+            "unit": "%"
+        },
+        "desktop_width": {
+            "label": "Desktop width",
+            "unit": "%"
+        },
+        "mobile_width": {
+            "label": "Timer mobile width",
+            "unit": "%"
+        },
+        "border_radius": {
+            "label": "Border radius",
+            "unit": "px"
+        },
+        "padding": {
+            "label": "Paddings",
+            "unit": "px"
+        },
+        "spacing": {
+            "label": "Spacing",
+            "unit": "px"
+        },
+        "content_alignment": {
+            "label": "Alignment",
+            "left": "Left",
+            "center": "Center"
+        },
+        "time_units_heading": "Time units",
+        "time_value": "Value",
+        "evergreen_on_complete": "When timer ends",
+        "on_complete_options": {
+            "hide": "Hide",
+            "restart": "Start again",
+            "wait_one_day": "Hide and start again in one day"
+        },
+        "show_background": "Show background",
+        "heading": "Title",
+        "body": "Text",
+        "text_color": "Text",
+        "bg_color": "Background",
+        "timer_bg_color": "Timer background",
+        "timer_text_color": "Timer text",
+        "button_color": "Button background",
+        "button_text_color": "Button text",
+        "button_style": {
+            "label": "Style",
+            "solid": "Solid",
+            "outline": "Outline",
+            "link": "Text"
+        }
+    },
+    "section": {
+        "desktop_height": {
+            "label": "Desktop height",
+            "unit": "px"
+        },
+        "mobile_height": {
+            "label": "Mobile height",
+            "unit": "px"
+        },
+        "image": "Image",
+        "overlay": {
+            "label": "Overlay opacity",
+            "unit": "%"
+        },
+        "content_width": {
+            "label": "Width",
+            "unit": "%"
+        },
+        "content_position": {
+            "label": "Position",
+            "top_left": "Top left",
+            "top_center": "Top center",
+            "top_right": "Top right",
+            "center_left": "Center left",
+            "center_center": "Center",
+            "center_right": "Center right",
+            "bottom_left": "Bottom left",
+            "bottom_center": "Bottom center",
+            "bottom_right": "Bottom right"
+        }
+    }
+}

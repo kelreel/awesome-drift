@@ -29,5 +29,4 @@ prefix = "apps"
 embedded = false
 
 [build]
-automatically_update_urls_on_dev = false
 dev_store_url = "blinks-dev.myshopify.com"

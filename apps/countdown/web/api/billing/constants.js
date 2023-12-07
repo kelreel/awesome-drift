@@ -1,0 +1,1 @@
+export const BILLING_BASE_PLAN = 'Basic'

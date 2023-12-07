@@ -1,0 +1,25 @@
+{% if button_style == 'link' %}
+  <a
+    class="gta__timer-block-btn gta__timer-block-btn--{{button_style}} {{class}}"
+    href="{% if button_url != blank %}{{ button_url }}{% else %}#{% endif %}"
+  >
+    <span class="gta__link-text">{{ button_text }}</span>
+    <svg
+      class="gta__link-chevron"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M9.75062 7.50122L14.2493 11.9999L9.75062 16.4987" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+  </a>
+{% else %}
+  <a
+    class="gta__timer-block-btn gta__timer-block-btn--{{button_style}} {{class}}"
+    href="{% if button_url != blank %}{{ button_url }}{% else %}#{% endif %}"
+  >
+    {{ button_text }}
+  </a>
+{% endif %}

@@ -1,0 +1,47 @@
+{
+    "networkMode": "bridge",
+    "family": "ShopifyApp_Countdown_dev",
+    "executionRoleArn": "arn:aws:iam::376953470933:role/ecsTaskExecutionRole",
+    "placementConstraints": [],
+    "volumes": [],
+    "containerDefinitions": [
+        {
+            "name": "countdown",
+            "image": "376953470933.dkr.ecr.us-east-1.amazonaws.com/shopify-app/countdown:dev",
+            "cpu": 0,
+            "memory": 192,
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {"name": "HOST", 				        "value": "https://countdown-timer.dev.getsitecontrol.com/"},
+                {"name": "BACKEND_PORT", 				"value": "3000"},
+                {"name": "SCOPES", 				        "value": "read_themes"},
+                
+                {"name": "BILLING_TEST", 				"value": "true"},
+                {"name": "SHOPIFY_TIMER_BLOCK_ID", 		"value": "8c388f3d-23b7-405b-8a41-3213405f0285"}
+            ],
+            "secrets":[ 
+                {"name": "SHOPIFY_API_KEY", 			"valueFrom": "/Deploy/ShopifyApps/dev/SHOPIFY_API_KEY"},
+                {"name": "SHOPIFY_API_SECRET", 			"valueFrom": "/Deploy/ShopifyApps/dev/SHOPIFY_API_SECRET"},
+
+                {"name": "POSTGRES_URL", 				"valueFrom": "/Deploy/ShopifyApps/dev/POSTGRES_URL"}
+            ],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/shopify-apps",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ]
+}
+

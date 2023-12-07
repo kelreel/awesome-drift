@@ -1,0 +1,42 @@
+{%- liquid
+  assign width_list = ''
+
+  if size == 'xsmall'
+    assign width_list = '80' | split: ','
+  elsif size == 'small'
+    assign width_list = '80,160' | split: ','
+  elsif size == 'medium'
+    assign width_list = '200,300,400,580,760,1000' | split: ','
+  else
+    assign width_list = '200,400,580,760,960,1200,1600,2000' | split: ','
+  endif
+-%}
+
+{%- capture srcset -%}
+  {%- for width in width_list -%}
+    {%- assign width_number = width | plus: 0 -%}
+    {%- if image.width < width_number -%}
+      {%- break -%}
+    {%- endif -%}
+    {{ image | image_url: width: width_number }} {{ width_number }}w,
+  {%- endfor -%}
+{%- endcapture -%}
+
+{% if image %}
+  <img
+    class="gta__image {{class}}"
+    data-parent-fit="cover"
+    src="{{ image | image_url: width: 320 }}"
+    srcset="{{ srcset }}"
+    aspectratio="{{ image.aspect_ratio }}"
+    sizes="auto"
+    alt="{{ image.alt }}"
+    loading="lazy"
+    width="1"
+    height="1"
+    style="
+      object-position:
+      {{ image.presentation.focal_point }};
+    "
+  >
+{% endif %}

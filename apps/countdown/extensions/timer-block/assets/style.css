@@ -1,0 +1,340 @@
+.gta__timer-root {
+    --gta-font-weight-normal: 400;
+    --gta-font-weight-medium: 500;
+    --gta-font-weight-bold: 600;
+}
+
+.gta__hidden {
+    display: none !important;
+}
+
+.gta__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Section */
+.gta__timer-section {
+    display: flex;
+    position: relative;
+    border-radius: var(--gta-border-radius, 0);
+    overflow: hidden;
+    padding: 20px;
+}
+
+.gta__timer-section__media {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.gta__timer-section__content {
+    z-index: 1;
+    width: var(--gta-content-width);
+}
+
+.gta-overlay {
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--gta-background-color);
+    opacity: var(--gta-overlay-opacity);
+}
+
+/* Timer */
+.gta__timer__container {
+    width: var(--gta-timer-width);
+    font-size: 10px;
+}
+
+.gta__timer__wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 12px;
+    font-size: 36px;
+    line-height: 40px;
+    font-weight: var(--gta-font-weight-bold);
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+}
+
+.gta__timer__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.gta__timer__separator {
+    font-family: serif;
+    color: var(--gta-timer-text-color);
+    font-size: 44px;
+    font-weight: var(--gta-font-weight-normal);
+}
+  
+.gta__timer--with-colons {
+    gap: 6px;
+}
+
+.gta__timer--capitalize {
+    text-transform: uppercase;
+}
+  
+.gta__timer__unit {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    color: var(--gta-timer-text-color);
+    width: 160px;
+    aspect-ratio: 1;
+}
+
+.gta__timer__unit-value {
+    font-size: 40px;
+    line-height: 44px;
+    color: var(--gta-timer-text-color);
+    text-align: center;
+    letter-spacing: 0;
+    /* Unset Dawn theme margins */
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+  
+.gta__timer__unit-label {
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: var(--gta-font-weight-medium);
+    text-transform: uppercase;
+}
+  
+.gta__timer__unit {
+    border-radius: var(--gta-border-radius, 0);
+}
+  
+.gta__timer--with-background-separate-and-solid .gta__timer__unit {
+    background: var(--gta-timer-background-color); 
+}
+
+.gta__timer--with-background-separate-and-outline .gta__timer__unit {
+    border: 1px solid var(--gta-timer-background-color);
+}
+
+/* Block */
+.gta__timer-block {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: var(--gta-content-align);
+}
+
+.gta__timer-block--with-background {
+    color: var(--gta-text-color);
+    border-radius: var(--gta-border-radius);
+    padding: 20px;
+}
+
+.gta__timer-block--with-background-solid {
+    background: var(--gta-background-color);
+}
+
+.gta__timer-block--with-background-outline {
+    border: 1px solid var(--gta-background-color);
+}
+
+.gta__timer-block--with-background-blurred {
+    background-color: color-mix(in srgb, var(--gta-background-color) 15%, transparent);
+    backdrop-filter: blur(16.5px);
+}
+
+.gta__timer-block--with-background-transparent {
+    background-color: color-mix(in srgb, var(--gta-background-color) 30%, transparent)
+}
+
+.gta__timer-block > * + * {
+    margin: 12px 0 0;
+}
+
+.gta__timer-block > * + .gta__timer__container {
+    margin: max(24px, 4%) 0 0;
+}
+
+.gta__timer-block__heading h1, .gta__timer-block__heading h2, .gta__timer-block__heading h3, .gta__timer-block__heading h4, .gta__timer-block__heading h5, .gta__timer-block__heading h6 {
+    color: var(--gta-text-color);
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin: 0;
+}
+
+.gta__timer-block__heading, .gta__timer-block__body {
+    color: var(--gta-text-color);
+    text-align: var(--gta-content-align);
+}
+
+.gta__timer-block .timer__svg {
+    margin: 0;
+}
+
+/* Button */
+.gta__timer-block-btns {
+    margin-top: 28px;
+}
+
+.gta__timer-block-btns--with-link {
+    margin-top: 20px;
+}
+
+.gta__timer-block-btn {
+    font-size: 14px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    padding: 12px 24px;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border: 1px solid transparent;
+    border-radius: var(--gta-border-radius, 0);
+    color: var(--gta-button-text-color);
+    font-weight: var(--gta-font-weight-bold);
+    cursor: pointer;
+    transition-timing-function: ease-in-out;
+    transition-duration: 250ms;
+    transition-property: color, box-shadow;
+}
+
+a.gta__timer-block-btn:hover {
+    color: var(--gta-button-text-color);
+}
+
+.gta__timer-block-btn--solid {
+    background: var(--gta-button-color);
+}
+
+.gta__timer-block-btn--outline {
+    background: unset;
+    border: 1px solid var(--gta-button-color);
+    color: var(--gta-button-text-color);
+}
+
+.gta__timer-block-btn--outline:hover {
+    box-shadow: 0 0 0 1px var(--gta-button-color) inset;
+}
+
+.gta__timer-block-btn--link {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    background: unset;
+    border: unset;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: var(--gta-font-weight-bold);
+    padding: 0 !important;
+}
+
+.gta__link-text::before {
+    transition-timing-function: ease;
+    transition-duration: 500ms;
+    transition-property: left, bottom;
+}
+
+.gta__link-text {
+    position: relative;
+    overflow: hidden;
+}
+
+.gta__link-chevron {
+    width: 24px;
+    height: 24px;
+}
+
+/* Locked block */
+.gta__timer-block--locked {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #E2FFCB;
+    border-radius: 20px;
+    padding: 44px;
+}
+
+.gta__timer-block--locked h2 {
+    margin: 0;
+    color: #000000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 34px;
+}
+
+.gta__timer-block--locked p {
+    margin: 12px 0 28px;
+    color: #656565;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+a.gta__timer-block-btn--locked {
+    padding: 12px 32px; 
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
+    border-radius: 12px;
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+a.gta__timer-block-btn--locked:hover {
+    color: #c9c9c9;
+}
+
+@media (min-width: 768px) {
+    .gta__timer-section {
+        padding: min(5%, 64px);
+    }
+
+    .gta__timer-block--with-background {
+        padding: var(--gta-spacing, 24px);
+    }
+
+    .gta__timer-block-btn {
+        min-height: 48px;
+        padding: 10px 48px;
+    }
+
+    .gta__timer-block--with-large-btn .gta__timer-block-btn {
+        min-height: 56px;
+        padding: 12px 48px;
+    }
+
+    .gta__link-text::before {
+        position: absolute;
+        bottom: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: var(--gta-text-color);
+        content: '';
+    }
+
+    .gta__timer-block-btn--link:hover .gta__link-text::before {
+        position: absolute;
+        bottom: 0;
+        left: 0%;
+    }
+}

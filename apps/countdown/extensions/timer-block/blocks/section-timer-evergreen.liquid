@@ -1,0 +1,424 @@
+{% liquid
+  assign options = block.settings
+
+  assign padding = options.padding
+  assign border_radius = options.border_radius
+
+  assign desktop_height = options.desktop_height
+  assign mobile_height = options.mobile_height
+  assign image = options.image
+
+  assign heading = options.heading
+  assign body = options.body
+
+  assign content_align = options.content_align
+  assign content_position = options.content_position
+  assign content_background_style = options.content_background_style
+  assign overlay_opacity = options.overlay_opacity | times: 0.01
+  assign content_desktop_width = options.content_width
+
+  assign timer_desktop_width = options.timer_desktop_width
+
+  assign bg_color = options.bg_color
+  assign text_color = options.text_color
+  assign timer_text_color = options.timer_text_color
+  assign timer_bg_color = options.timer_bg_color
+
+  assign show_background = false
+
+  if content_background_style != 'none'
+    assign show_background = true
+  endif
+
+  assign with_colon = true
+
+  if options.timer_style == 'solid' or options.timer_style == 'outline' or options.timer_style == 'plain'
+    assign with_colon = false
+  endif
+
+  assign button_text = options.button_text
+  assign button_url = options.button_url
+  assign button_style = options.button_style
+  assign button_color = options.button_color
+  assign button_text_color = options.button_text_color
+%}
+
+{{ 'style.css' | asset_url | stylesheet_tag }}
+
+{% capture css %}
+  {% style %}
+      .block-{{ block.id }} {
+        display: flex;
+        margin-top: {{padding}}px;
+        margin-bottom: {{padding}}px;
+        min-height: {{mobile_height}}px;
+
+        {{content_position}};
+
+        --gta-timer-width: 100%;
+        --gta-content-width: 100%;
+        --gta-border-radius: {{ border_radius }}px;
+        --gta-content-align: {{ content_align }};
+        --gta-overlay-opacity: {{overlay_opacity}};
+
+        --gta-text-color: {{ text_color }};
+        --gta-background-color: {{ bg_color }};
+        --gta-timer-text-color: {{ timer_text_color }};
+        --gta-timer-background-color: {{ timer_bg_color }};
+        --gta-button-color: {{ button_color }};
+        --gta-button-text-color: {{ button_text_color }};
+      }
+
+      @media screen and (min-width: 768px) {
+        .block-{{ block.id }} {
+            min-height: {{desktop_height}}px;
+            --gta-timer-width: {{ timer_desktop_width }}%;
+            --gta-content-width: {{ content_desktop_width }}%;
+            --gta-spacing: 48px;
+        }
+      }
+  {% endstyle %}
+{% endcapture %}
+{% render 'inline-css-minifier', css: css %}
+
+{% if app.metafields.billing.plan == 'Basic' %}
+  <script src="{{ 'timer.js' | asset_url }}" defer></script>
+  <div class="gta__timer-section block-{{block.id}}">
+    <div class="gta-overlay"></div>
+    {% render 'img', class: 'gta__timer-section__media', image: image %}
+    <div class="gta__timer-section__content gta__timer-root {% if show_background %} gta__timer-block--with-background gta__timer-block--with-background-{{content_background_style}}{% endif %} {% if with_colon %} gta__timer-block--with-colons{% endif %} gta__timer-block gta__hidden">
+      {% if heading != blank %}
+        <div class="gta__timer-block__heading">
+          {{ heading }}
+        </div>
+      {% endif %}
+      {% if body != blank %}
+        <div
+          class="gta__timer-block__body"
+        >
+          {{ body }}
+        </div>
+      {% endif %}
+      {% render 'timer', block: block, mode: 'evergreen' %}
+      {% if button_text != blank %}
+        <div class="gta__timer-block-btns {% if button_style == 'link' %}gta__timer-block-btns--with-link{% endif %}">
+          {% render 'button',
+            class: 'gta__timer-block--with-large-btn',
+            button_text: button_text,
+            button_url: button_url,
+            button_style: button_style
+          %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% else %}
+  {% if request.design_mode %}
+    {% render 'locked', block: block %}
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:timer.section_timer_evergreen",
+  "target": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "t:timer.padding.unit",
+      "label": "t:timer.padding.label"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "default": 20,
+      "unit": "t:timer.border_radius.unit",
+      "label": "t:timer.border_radius.label"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 140,
+      "max": 1240,
+      "step": 20,
+      "default": 600,
+      "unit": "t:section.desktop_height.unit",
+      "label": "t:section.desktop_height.label"
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 140,
+      "max": 1240,
+      "step": 20,
+      "default": 600,
+      "unit": "t:section.mobile_height.unit",
+      "label": "t:section.mobile_height.label"
+    },
+
+    {
+      "type": "header",
+      "content": "t:section.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:section.image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 80,
+      "unit": "t:section.overlay.unit",
+      "label": "t:section.overlay.label"
+    },
+
+    {
+      "type": "header",
+      "content": "t:timer.content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "default": "<h2>Evergreen timer banner</h2>",
+      "label": "t:timer.heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "body",
+      "label": "t:timer.body",
+      "default": "Create urgency around sales and special offers"
+    },
+    {
+      "type": "select",
+      "id": "content_align",
+      "label": "t:timer.content_alignment.label",
+      "default": "center",
+      "options": [
+        {
+          "label": "t:timer.content_alignment.left",
+          "value": "left"
+        },
+        {
+          "label": "t:timer.content_alignment.center",
+          "value": "center"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 30,
+      "max": 100,
+      "step": 1,
+      "default": 50,
+      "unit": "t:section.content_width.unit",
+      "label": "t:section.content_width.label"
+    },
+    {
+      "type": "select",
+      "id": "content_background_style",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:timer.background_none"
+        },
+        {
+          "value": "solid",
+          "label": "t:timer.background_solid"
+        },
+        {
+          "value": "outline",
+          "label": "t:timer.background_outline"
+        },
+        {
+          "value": "blurred",
+          "label": "t:timer.background_blurred"
+        },
+        {
+          "value": "transparent",
+          "label": "t:timer.background_transparent"
+        }
+      ],
+      "default": "solid",
+      "label": "t:timer.background"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "t:section.content_position.label",
+      "default": "align-items:center;justify-content:center;",
+      "options": [
+        {
+          "value": "align-items:flex-start;justify-content:flex-start;",
+          "label": "t:section.content_position.top_left"
+        },
+        {
+          "value": "align-items:flex-start;justify-content:center;",
+          "label": "t:section.content_position.top_center"
+        },
+        {
+          "value": "align-items:flex-start;justify-content:flex-end;",
+          "label": "t:section.content_position.top_right"
+        },
+        {
+          "value": "align-items:center;justify-content:flex-start;",
+          "label": "t:section.content_position.center_left"
+        },
+        {
+          "value": "align-items:center;justify-content:center;",
+          "label": "t:section.content_position.center_center"
+        },
+        {
+          "value": "align-items:center;justify-content:flex-end;",
+          "label": "t:section.content_position.center_right"
+        },
+        {
+          "value": "align-items:flex-end;justify-content:flex-start;",
+          "label": "t:section.content_position.bottom_left"
+        },
+        {
+          "value": "align-items:flex-end;justify-content:center;",
+          "label": "t:section.content_position.bottom_center"
+        },
+        {
+          "value": "align-items:flex-end;justify-content:flex-end;",
+          "label": "t:section.content_position.bottom_right"
+        }
+      ]
+    },
+
+    {
+      "type": "header",
+      "content": "t:timer.timer"
+    },
+    {
+      "type": "select",
+      "id": "evergreen_unit",
+      "label": "t:timer.time_units_heading",
+      "default": "day",
+      "options": [
+        {
+          "label": "t:timer.days",
+          "value": "day"
+        },
+        {
+          "label": "t:timer.hours",
+          "value": "hour"
+        },
+        {
+          "label": "t:timer.minutes",
+          "value": "minute"
+        }
+      ]
+    },
+    {
+      "type": "number",
+      "id": "evergreen_value",
+      "label": "t:timer.time_value",
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "timer_style",
+      "options": [
+        {
+          "value": "plain",
+          "label": "t:timer.timer_style.plain"
+        },
+        {
+          "value": "solid",
+          "label": "t:timer.timer_style.solid"
+        },
+        {
+          "value": "outline",
+          "label": "t:timer.timer_style.outline"
+        },
+        {
+          "value": "plain_with_colon",
+          "label": "t:timer.timer_style.plain_with_colon"
+        },
+        {
+          "value": "solid_with_colon",
+          "label": "t:timer.timer_style.solid_with_colon"
+        },
+        {
+          "value": "outline_with_colon",
+          "label": "t:timer.timer_style.outline_with_colon"
+        }
+      ],
+      "default": "solid_with_colon",
+      "label": "t:timer.timer_style.label"
+    },
+    {
+      "type": "range",
+      "id": "timer_desktop_width",
+      "min": 30,
+      "max": 100,
+      "step": 1,
+      "default": 100,
+      "unit": "t:timer.desktop_width.unit",
+      "label": "t:timer.desktop_width.label"
+    },
+
+    {
+      "type": "header",
+      "content": "t:timer.button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "t:timer.button_label",
+      "default": "Button label"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "t:timer.button_style.solid"
+        },
+        {
+          "value": "outline",
+          "label": "t:timer.button_style.outline"
+        },
+        {
+          "value": "link",
+          "label": "t:timer.button_style.link"
+        }
+      ],
+      "default": "solid",
+      "label": "t:timer.button_style.label"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "t:timer.button_url"
+    },
+
+    {
+      "type": "header",
+      "content": "t:timer.colors"
+    },
+
+    { "type": "color", "id": "bg_color", "label": "t:timer.bg_color", "default": "#222222" },
+    { "type": "color", "id": "text_color", "label": "t:timer.text_color", "default": "#FFFFFF" },
+    { "type": "color", "id": "timer_bg_color", "label": "t:timer.timer_bg_color", "default": "#333333" },
+    { "type": "color", "id": "timer_text_color", "label": "t:timer.timer_text_color", "default": "#FFFFFF" },
+    { "type": "color", "id": "button_color", "label": "t:timer.button_color", "default": "#18A469" },
+    { "type": "color", "id": "button_text_color", "label": "t:timer.button_text_color", "default": "#FFFFFF" }
+  ]
+}
+{% endschema %}

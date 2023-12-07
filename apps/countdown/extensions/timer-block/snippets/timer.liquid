@@ -1,0 +1,89 @@
+{% liquid
+  assign options = block.settings
+
+  assign evergreen_unit = options.evergreen_unit
+  assign evergreen_value = options.evergreen_value
+  assign evergreen_on_complete = 'restart'
+
+  assign end_date = options.end_date
+  assign end_time = options.end_time
+  assign hide_on_complete = true
+
+  assign with_colon = true
+
+  if options.timer_style == 'solid' or options.timer_style == 'outline' or options.timer_style == 'plain'
+    assign with_colon = false
+  endif
+
+  case options.timer_style
+    when 'solid'
+      assign timer_style = 'solid'
+    when 'solid_with_colon'
+      assign timer_style = 'solid'
+    when 'outline'
+      assign timer_style = 'outline'
+    when 'outline_with_colon'
+      assign timer_style = 'outline'
+    when 'plain'
+      assign timer_style = 'plain'
+    when 'plain_with_colon'
+      assign timer_style = 'plain'
+  endcase
+%}
+
+<gsc-countdown-timer
+  class="gta__timer__container gta__hidden"
+  data-mode="{{mode}}"
+  data-block-id="{{block.id}}"
+  data-end-date="{{end_date}}"
+  data-end-time="{{end_time}}"
+  data-evergreen-unit="{{evergreen_unit}}"
+  data-evergreen-value="{{evergreen_value}}"
+  data-evergreen-on-complete="{{evergreen_on_complete}}"
+  data-hide-on-complete="{{hide_on_complete}}"
+>
+  <svg
+    class="gta__timer__svg"
+    height="100%"
+    viewBox="0 0 500 {%if with_colon%}108{%else%}118{%endif%}"
+    preserveAspectRatio="xMinYMin meet"
+  >
+    <foreignObject width="99.9%" height="100%" xmlns="http://www.w3.org/1999/xhtml">
+      <div class="gta__timer__wrapper gta__timer--with-background-separate gta__timer--with-background-separate-and-{{timer_style}} {% if with_colon %} gta__timer--with-colons {% endif %} xmlns="http://www.w3.org/1999/xhtml">
+        <div class='gta__timer__unit'>
+          <h4 class='gta__timer__unit-value' data-timer-days>00</h4>
+            <div class='gta__timer__unit-label'>
+              {{ 'units.days' | t }}
+            </div>
+        </div>
+        {% if with_colon %}
+          <div class="gta__timer__separator">:</div>
+        {% endif %}
+        <div class='gta__timer__unit'>
+          <h4 class='gta__timer__unit-value' data-timer-hours>00</h4>
+            <div class='gta__timer__unit-label'>
+              {{ 'units.hours' | t }}
+            </div>
+        </div>
+        {% if with_colon %}
+          <div class="gta__timer__separator">:</div>
+        {% endif %}
+        <div class='gta__timer__unit'>
+          <h4 class='gta__timer__unit-value' data-timer-minutes>00</h4>
+            <div class='gta__timer__unit-label'>
+              {{ 'units.minutes' | t }}
+            </div>
+        </div>
+        {% if with_colon %}
+          <div class="gta__timer__separator">:</div>
+        {% endif %}
+        <div class='gta__timer__unit'>
+          <h4 class='gta__timer__unit-value' data-timer-seconds>00</h4>
+            <div class='gta__timer__unit-label'>
+              {{ 'units.seconds' | t }}
+            </div>
+        </div>
+      </div>
+    </foreignObject>
+  </svg>
+</gsc-countdown-timer>
