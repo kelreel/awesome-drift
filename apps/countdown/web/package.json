@@ -1,6 +1,6 @@
 {
-  "name": "shopify-countdown-app-web",
-  "version": "1.0.0",
+  "name": "@countdown/backend",
+  "version": "0.0.0",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

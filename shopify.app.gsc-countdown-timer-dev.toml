@@ -1,0 +1,26 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "GSC Countdown Timer (dev)"
+client_id = "1b4ac2117f7d8c7d56975e2018b3129b"
+application_url = "https://kw-chance-touch-reading.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [
+  "https://kw-chance-touch-reading.trycloudflare.com/auth/callback",
+  "https://kw-chance-touch-reading.trycloudflare.com/auth/shopify/callback",
+  "https://kw-chance-touch-reading.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-07"
+
+[pos]
+embedded = false
+
+[build]
+dev_store_url = "gsc-theme-kir.myshopify.com"

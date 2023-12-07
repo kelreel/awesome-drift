@@ -1,20 +1,22 @@
 {
-  "name": "countdown-app",
-  "version": "1.0.0",
-  "main": "web/index.js",
+  "name": "countdown-app-root",
+  "version": "0.0.0",
+  "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "shopify": "shopify",
     "build": "shopify app build",
-    "dev": "shopify app dev",
+    "dev": "shopify app dev --skip-dependencies-installation",
     "info": "shopify app info",
     "generate": "shopify app generate",
     "deploy": "shopify app deploy"
   },
   "dependencies": {
-    "@shopify/app": "^3.48.1",
-    "@shopify/cli": "^3.48.1"
+    "@countdown/frontend": "*",
+    "@countdown/backend": "*"
   },
-  "author": "gsc",
-  "private": true
+  "devDependencies": {
+    "@shopify/app": "3.51.2",
+    "@shopify/cli": "3.51.2"
+  }
 }

@@ -11,7 +11,8 @@
   "workspaces": [
     "./apps/*",
     "./apps/button-tree/web/*",
-    "./apps/button-tree/web/shared",
+    "./apps/countdown/web/",
+    "./apps/countdown/web/frontend/",
     "./packages/*"
   ],
   "devDependencies": {
