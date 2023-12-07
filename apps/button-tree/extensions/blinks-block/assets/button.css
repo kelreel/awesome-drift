@@ -1,0 +1,51 @@
+.blinks-app-block-button {
+    display: flex;
+}
+
+.blinks-app-block-button__btn {
+    /* reset */
+    overflow: visible;
+    font-size: inherit;
+    line-height: inherit;
+    background: none;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    appearance: none;
+    touch-action: manipulation;
+    /* end reset */
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 12px;
+
+    height: var(--bbtn-height);
+    width: var(--bbtn-width);
+    max-width: var(--bbtn-width);
+    font-size: var(--bbtn-font-size);
+    font-weight: var(--bbtn-font-weight);
+    border: var(--bbtn-border-width) solid var(--bbtn-border-color);
+    border-radius: var(--bbtn-border-radius);
+    background: var(--bbtn-bg);
+    color: var(--bbtn-text-color);
+    transition: opacity 0.5s;
+}
+
+.blinks-app-block-button__btn:hover {
+    opacity: 0.9;
+}
+
+.blinks-app-block-button_image {
+    width: var(--bbtn-img-size);
+    height: var(--bbtn-img-size);
+    -webkit-user-drag: none;
+    user-select: none;
+}

@@ -1,0 +1,11 @@
+.github
+.husky
+node_modules
+**/node_modules
+dist
+**/dist
+base.Dockerfile
+README.md
+turbo.json
+.env
+example.env

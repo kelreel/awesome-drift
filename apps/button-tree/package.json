@@ -1,0 +1,23 @@
+{
+  "name": "blinks-app-root",
+  "version": "0.0.0",
+  "private": "true",
+  "scripts": {
+    "generate": "shopify app generate",
+    "dev": "shopify app dev --theme-app-extension-port=9293 --skip-dependencies-installation",
+    "dev:tunnel": "shopify app dev --tunnel-url=https://shopify.xpiper.com:443 --theme-app-extension-port=9293 --skip-dependencies-installation",
+    "build": "npm -w @blinks/shared run build && npm -w @blinks/app-widget run build && npm -w @blinks/frontend run build && npm -w @blinks/backend run build",
+    "deploy": "shopify app deploy",
+    "typecheck": "npm -w @blinks/app-widget run typecheck && npm -w @blinks/frontend run typecheck && npm -w @blinks/backend run typecheck"
+  },
+  "dependencies": {
+    "@blinks/app-widget": "*",
+    "@blinks/frontend": "*",
+    "@blinks/backend": "*",
+    "@blinks/shared": "*"
+  },
+  "devDependencies": {
+    "@shopify/app": "3.51.2",
+    "@shopify/cli": "3.51.2"
+  }
+}

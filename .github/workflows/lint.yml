@@ -1,0 +1,24 @@
+name: Lint & Typecheck
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+env:
+  NODE_VERSION: 20
+
+jobs:
+  checks:
+    name: TS & ESlint Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+
+      - name: Linting
+        run: npm run lint

@@ -1,0 +1,61 @@
+{% assign product_id = block.settings.product.id %}
+{% assign widget_id = block.settings.widget_id %}
+
+{% if app.metafields.billing.plan == 'Free' %}
+  <div class="blinks-app-block-button__billing" style="border: 2px dashed red; padding: 5px;">
+    <p style="margin: 0;">Link list is unavailable.</p>
+    <p style="margin: 0">No app subscription found for app.</p>
+  </div>
+{% else %}
+  {% comment %} <div>{{ app.metafields.widget[widget_id] }}</div> {% endcomment %}
+  <div class="blinks-app-block__root" id="{{ block.id }}"></div>
+
+  <script>
+    try {
+      let script = document.createElement('script');
+      script.async = false;
+      script.defer = false;
+      document.head.appendChild(script);
+
+      script.src = "{{ 'widget.js' | asset_url }}";
+
+      script.onload = function () {
+        window.BLINKS_APP_RUNTIME(document.getElementById('{{ block.id }}'), {
+          platform: 'Shopify',
+          productId: '{{product_id}}',
+          widgetId: '{{widget_id}}',
+          plan: '{{app.metafields.billing.plan}}',
+          settings: '{{app.metafields.widget[widget_id]}}',
+        });
+      };
+    } catch (e) {
+      console.log(e);
+    }
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Button List Tree",
+  "target": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Show a single button or list. Setup buttons and their content (via \"Bulk edit\") in Shopify admin app page. [Learn more](https://x.com)"
+    },
+    {
+      "type": "text",
+      "id": "widget_id",
+      "label": "Widget ID",
+      "info": "Paste widget ID from app",
+      "placeholder": "g8yyo.....a9af"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "autofill": true
+    }
+  ]
+}
+{% endschema %}

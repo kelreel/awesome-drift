@@ -1,0 +1,28 @@
+name: build-button-tree
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login to Yandex Cloud Container Registry
+        id: login-cr
+        uses: yc-actions/yc-cr-login@v1
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+
+      - name: Build, tag, and push image to Yandex Cloud Container Registry
+        env:
+          CR_REGISTRY: ${{ vars.YC_REGISTRY_ID }}
+          CR_REPOSITORY: ${{ vars.YC_APP_NAME }}
+          IMAGE_TAG: ${{ github.ref_name }}
+          SHOPIFY_API_KEY: ${{ vars.SHOPIFY_API_KEY }}
+        run: |
+          docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:latest . --build-arg SHOPIFY_API_KEY=$SHOPIFY_API_KEY
+          docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:latest

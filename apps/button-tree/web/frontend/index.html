@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Ensures that the UI is properly scaled in the Shopify Mobile app -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com/" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" />
+
+  <script type="module">
+    if (!import.meta.env || !import.meta.env.PROD) {
+      // Because the base HTML is rendered in the server side, we need to manually embed the code to enable HMR in our
+      // code, so that the vite server is properly enabled to run HMR
+      const script = document.createElement("script");
+      script.setAttribute("type", "module");
+      script.setAttribute("src", "./dev_embed.js");
+      document.getElementsByTagName("head")[0].append(script);
+    }
+  </script>
+</head>
+
+<body>
+  <style>
+    body {
+      position: relative;
+      overflow-y: scroll;
+    }
+
+    /* width */
+    body::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    body::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    body::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    /* Handle on hover */
+    body::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    .loader-container {
+      position: absolute;
+      top: 40vh;
+      left: 50%;
+    }
+
+    .loader {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+    }
+
+    .loader:after {
+      content: " ";
+      display: block;
+      width: 48px;
+      height: 48px;
+      margin: 8px;
+      border-radius: 50%;
+      border: 6px solid #34b674;
+      border-color: #34b674 transparent #34b674 transparent;
+      animation: lds-dual-ring 1.2s linear infinite;
+    }
+
+    @keyframes lds-dual-ring {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <div id="app">
+    <div class="loader-container">
+      <div class="loader" />
+    </div>
+  </div>
+
+  <script type="module" src="/src/index.tsx"></script>
+</body>
+
+</html>

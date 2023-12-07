@@ -1,0 +1,29 @@
+{
+  "name": "@blinks/app-widget",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/widget.iife.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "dev": "tsc && vite build --watch",
+    "build": "tsc && vite build",
+    "typecheck": "tsc --noEmit",
+    "vite": "vite"
+  },
+  "dependencies": {
+    "@blinks/shared": "*",
+    "@urql/exchange-auth": "^2.1.6",
+    "cross-env": "^7.0.3",
+    "preact": "^10.15.1",
+    "urql": "^4.0.5",
+    "vite-plugin-svgr": "^3.2.0"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.5.0",
+    "sass": "^1.63.6",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.0.2",
+    "vite-plugin-static-copy": "^0.16.0"
+  }
+}

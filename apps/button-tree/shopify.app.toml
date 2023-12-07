@@ -1,0 +1,34 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "blink-dev"
+client_id = "32bfa54d5584531846e1f46b8f899a30"
+application_url = "https://shopify.xpiper.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products, read_themes, unauthenticated_read_metaobjects, unauthenticated_read_product_listings"
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [
+  "https://shopify.xpiper.com/auth/callback",
+  "https://shopify.xpiper.com/auth/shopify/callback",
+  "https://shopify.xpiper.com/api/auth/callback",
+  "https://shopify.xpiper.com/.shopify/graphiql/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-07"
+
+[app_proxy]
+url = "https://shopify.xpiper.com/api/client"
+subpath = "blinks-app-proxy"
+prefix = "apps"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = false
+dev_store_url = "blinks-dev.myshopify.com"

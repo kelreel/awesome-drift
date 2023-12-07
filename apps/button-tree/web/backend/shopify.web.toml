@@ -1,0 +1,6 @@
+roles = ["backend"]
+
+port = 3401
+
+[commands]
+dev = "npm run dev"

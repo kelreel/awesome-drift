@@ -1,0 +1,16 @@
+# common
+.github
+node_modules
+**/node_modules
+dist
+**/dist
+web/app-widget
+
+# root files
+.env
+.example.env
+.ruby-version
+.eslintrc.js
+
+# quircks
+.idea

@@ -1,0 +1,7 @@
+type = "frontend"
+
+port = 3400
+
+[commands]
+dev = "npm run dev"
+build = "npm run build"

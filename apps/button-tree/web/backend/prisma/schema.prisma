@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model Session {
+  id          String    @id
+  shop        String
+  state       String
+  isOnline    Boolean   @default(false)
+  scope       String?
+  expires     DateTime?
+  accessToken String
+  userId      BigInt?
+}
+
+model Shop {
+  id        Int      @id @default(autoincrement())
+  shop      String   @unique @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  installed Boolean  @default(true)
+  data      Json
+  billing   Json?
+  Widget    Widget[]
+
+  @@index([shop])
+}
+
+model Widget {
+  id        Int       @id @default(autoincrement())
+  name      String
+  shopId    Int
+  shop      Shop      @relation(fields: [shopId], references: [id])
+  config    Json
+  namespace String
+  key       String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  @@index([shopId])
+}

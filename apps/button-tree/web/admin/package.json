@@ -1,0 +1,28 @@
+{
+  "name": "@blinks/admin",
+  "version": "1.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "test": "vitest",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "graphiql": "^3.0.6",
+    "graphql": "^16.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.2.2",
+    "vite-plugin-dts": "^3.6.0"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.6"
+  }
+}

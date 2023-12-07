@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    image: cr.yandex/crpfbnl7j4u0rs8okf7v/blinks-app
+    container_name: blinks-app_1
+    restart: on-failure
+    ports:
+      - 3401:3401
+    env_file: .env
+    # network_mode: "host"
+    environment:
+      - POSTGRES_URL=postgresql://postgres:postgres@postgres:5432/blinks?schema=public
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15.1
+    container_name: postgres_blinks
+    restart: on-failure
+    ports:
+      - 5444:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+volumes:
+  db:
+    driver: local
