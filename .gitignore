@@ -28,3 +28,6 @@ extensions/*/build
 
 #turbo
 out
+
+# Shopify CLI apps local configs
+shopify.app.*.toml
