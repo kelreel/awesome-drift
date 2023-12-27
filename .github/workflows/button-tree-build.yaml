@@ -1,8 +1,8 @@
 name: build-button-tree
 on:
   push:
-    branches:
-      - "main"
+    # branches:
+    # - main
 
 jobs:
   build:

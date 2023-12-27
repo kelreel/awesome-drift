@@ -34,5 +34,5 @@ RUN cd apps/button-tree/web/backend && npm run build
 # remove development depend encies
 RUN npm prune --production
 
-ENTRYPOINT ["sh", "-c", "cd cd apps/button-tree/backend && npm run start:migrate:prod"]
+ENTRYPOINT ["sh", "-c", "cd apps/button-tree/web/backend && npm run start:migrate:prod"]
 

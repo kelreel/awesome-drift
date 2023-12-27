@@ -1,9 +1,9 @@
 name: Lint & Typecheck
 on:
   pull_request:
-    branches:
-      - main
-      - dev
+    # branches:
+    #   - main
+    #   - dev
 
 env:
   NODE_VERSION: 20
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
       - run: npm ci
 
       - name: Linting

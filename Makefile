@@ -14,6 +14,7 @@ build2:
 button-tree-push:
 	docker push cr.yandex/${REGISTRY_ID}/${APPLICATION_NAME}
 
+# add all env vars to target .env (fot testing)
 button-tree-run:
-	docker run --net=host --env-file ./web/.env --rm cr.yandex/${REGISTRY_ID}/${APPLICATION_NAME}
+	docker run --net=host --env-file ./apps/button-tree/web/.env --rm cr.yandex/${REGISTRY_ID}/${APPLICATION_NAME}
 
