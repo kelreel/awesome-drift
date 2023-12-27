@@ -6,12 +6,12 @@ EXPOSE 3000
 
 WORKDIR /app
 
-# copy & instapp deps
+# copy & install deps
 COPY web/package.json .
 RUN mkdir frontend
 COPY web/frontend/package.json frontend/.
 
-RUN npm install 
+RUN npm install
 RUN cd frontend && npm install
 
 # copy main code & build
