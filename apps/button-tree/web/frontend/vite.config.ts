@@ -47,16 +47,23 @@ export default defineConfig({
   define: {
     "process.env.SHOPIFY_API_KEY": JSON.stringify(process.env.SHOPIFY_API_KEY),
   },
+  optimizeDeps: {
+    exclude: ["@gsc/ui"],
+  },
   resolve: {
     preserveSymlinks: true,
   },
   server: {
     host: "localhost",
+    // @ts-ignore
     port: process.env.FRONTEND_PORT,
     hmr: hmrConfig,
     proxy: {
       "^/(\\?.*)?$": proxyOptions,
       "^/api(/|(\\?.*)?$)": proxyOptions,
+    },
+    watch: {
+      ignored: ["!**/node_modules/@gsc/ui/**"], // for HMR
     },
   },
 });
