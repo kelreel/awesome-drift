@@ -14,6 +14,7 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@gsc/ui": "*",
     "@blinks/shared": "*",
     "@apollo/client": "^3.7.14",
     "@dnd-kit/core": "^6.0.8",
@@ -35,7 +36,7 @@
     "react-dom": "^18.2.0",
     "react-refresh": "0.14.0",
     "react-router-dom": "^6.11.2",
-    "styled-components": "^6.1.0",
+    "styled-components": "^6.1.8",
     "typescript": "^5.1.6",
     "use-debounce": "^9.0.4"
   },

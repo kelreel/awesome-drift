@@ -1,4 +1,5 @@
 import { WidgetSettings } from "@blinks/shared";
+import { Button } from "@gsc/ui";
 import { useNavigate } from "@shopify/app-bridge-react";
 import { Card } from "@shopify/polaris";
 import { useQuery } from "@tanstack/react-query";
@@ -117,6 +118,7 @@ export const WidgetList = () => {
         }}
         isLoading={isWidgetDeleting}
       />
+      <Button></Button>
     </Card>
   );
 };
