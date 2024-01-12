@@ -118,7 +118,7 @@ export const WidgetList = () => {
         }}
         isLoading={isWidgetDeleting}
       />
-      <Button></Button>
+      <Button variant="primary">Button</Button>
     </Card>
   );
 };

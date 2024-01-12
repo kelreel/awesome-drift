@@ -1,6 +1,8 @@
+import { theme } from "@gsc/ui";
 import { NavigationMenu } from "@shopify/app-bridge-react";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 
 import {
   AppBridgeProvider,
@@ -18,33 +20,35 @@ export default function App() {
   const pages = import.meta.globEager("./pages/**/!(*.test.[jt]sx)*.([jt]sx)");
 
   return (
-    <PolarisProvider>
-      <BrowserRouter>
-        <AppBridgeProvider>
-          <QueryProvider>
-            {/* <ApolloProvider> */}
-            <BillingRedirectProvider>
-              <NavigationMenu
-                navigationLinks={
-                  [
-                    // {
-                    //   label: "Link list appearance",
-                    //   destination: "/appearance",
-                    // },
-                    // {
-                    //   label: "Billing",
-                    //   destination: "/billing",
-                    // },
-                  ]
-                }
-              />
-              {/* @ts-ignore */}
-              <Routes pages={pages} />
-            </BillingRedirectProvider>
-            {/* </ApolloProvider> */}
-          </QueryProvider>
-        </AppBridgeProvider>
-      </BrowserRouter>
-    </PolarisProvider>
+    <ThemeProvider theme={theme}>
+      <PolarisProvider>
+        <BrowserRouter>
+          <AppBridgeProvider>
+            <QueryProvider>
+              {/* <ApolloProvider> */}
+              <BillingRedirectProvider>
+                <NavigationMenu
+                  navigationLinks={
+                    [
+                      // {
+                      //   label: "Link list appearance",
+                      //   destination: "/appearance",
+                      // },
+                      // {
+                      //   label: "Billing",
+                      //   destination: "/billing",
+                      // },
+                    ]
+                  }
+                />
+                {/* @ts-ignore */}
+                <Routes pages={pages} />
+              </BillingRedirectProvider>
+              {/* </ApolloProvider> */}
+            </QueryProvider>
+          </AppBridgeProvider>
+        </BrowserRouter>
+      </PolarisProvider>
+    </ThemeProvider>
   );
 }
