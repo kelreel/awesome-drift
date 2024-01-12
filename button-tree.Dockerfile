@@ -24,6 +24,9 @@ EXPOSE 3401
 # build shared
 RUN cd apps/button-tree/web/shared && npm run build
 
+# build @gsc/ui
+RUN cd packages/ui && npm run build
+
 # build frontend
 RUN cd apps/button-tree/web/frontend && npm run build
 

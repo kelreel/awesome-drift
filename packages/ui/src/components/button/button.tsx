@@ -10,8 +10,9 @@ const Container = styled.div`
 
 interface Props {
   className?: string;
+  children: React.ReactNode;
 }
 
-export const Button = ({ className }: Props): JSX.Element => {
-  return <Container className={className}>Button</Container>;
+export const Button = ({ className, children }: Props): JSX.Element => {
+  return <Container className={className}>{children}</Container>;
 };

@@ -13,13 +13,23 @@
     "typecheck": "tsc --noEmit",
     "dev": "vite build --watch",
     "build": "vite build",
-    "vite": "vite"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",
     "typescript": "^5.3.3",
     "vite": "^4.3.9",
-    "vite-plugin-dts": "^3.7.0"
+    "vite-plugin-dts": "^3.7.0",
+    "storybook": "^7.6.7",
+    "@storybook/react": "^7.6.7",
+    "@storybook/react-vite": "^7.6.7",
+    "@storybook/addon-links": "^7.6.7",
+    "@storybook/addon-essentials": "^7.6.7",
+    "@storybook/blocks": "^7.6.7",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/addon-interactions": "^7.6.7",
+    "@storybook/test": "^7.6.7"
   },
   "peerDependencies": {
     "react": "^18.2.0",
