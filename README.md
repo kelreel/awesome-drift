@@ -12,6 +12,7 @@
 ### Official resources
 
 - [App](https://app.drift.trade/)
+- [Foundation](https://drift.foundation/)
 - [Drift Docs](https://docs.drift.trade/)
 - [Drift API docs](https://drift-labs.github.io/v2-teacher/#terms-of-use)
 - [Historical data API](https://docs.drift.trade/historical-data/historical-data-v2)
